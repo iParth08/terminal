@@ -1,5 +1,13 @@
 //imports
-import { printOnScreen } from "./renderer.js";
+import {
+  clearScreen,
+  printOnScreen,
+  printPlayerInfo,
+  printStatusWindow,
+} from "./renderer.js";
+
+import { player, player_status } from "./module/data.js";
+
 // Takes input : also the trigger of actions
 
 const inputCmd = document.getElementById("input");
@@ -37,5 +45,9 @@ const handleCommands = (parsedToken) => {
     printOnScreen(null, outstream);
   } else if (command == "log") {
     printOnScreen(command, outstream);
+  } else if (command == "status") {
+    clearScreen();
+    printPlayerInfo(player);
+    printStatusWindow(player_status);
   }
 };
