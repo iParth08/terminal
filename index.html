@@ -4,6 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CLI-TERMINAL-PROFILE</title>
+    <link rel="stylesheet" href="style/common.css" />
+    <link rel="stylesheet" href="style/monitor.css" />
+    <link rel="stylesheet" href="style/utilClasses.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="wrapper flex-center">
+      <div class="monitor">
+        <div class="glass-terminal">
+          <div class="output-screen flex-between">
+            <section class="result"></section>
+            <section class="character"></section>
+          </div>
+          <div class="input-stream">
+            <span class="curate">$</span>
+            <input type="text" id="input" autofocus />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/renderer.js"></script>
+  </body>
 </html>

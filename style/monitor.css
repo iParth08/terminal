@@ -1,0 +1,12 @@
+.monitor {
+  height: 80vh;
+  width: 80%;
+  background-color: grey;
+  border: 20px solid burlywood;
+}
+
+.glass-terminal {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.888);
+}
