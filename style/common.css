@@ -26,6 +26,7 @@
   height: 100%;
   min-width: 80%;
   background-color: rgb(0, 128, 98);
+  padding: 15px 10px;
 }
 
 .character {
@@ -44,9 +45,11 @@
 .curate {
   color: white;
   font-size: 0.8rem;
+  margin-right: 5px;
 }
 
 #input {
+  width: 100%;
   background-color: transparent;
   color: greenyellow;
   font-size: 0.8rem;

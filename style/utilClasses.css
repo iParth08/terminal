@@ -1,3 +1,6 @@
+.flex {
+  display: flex;
+}
 .flex-center {
   display: flex;
   justify-content: center;
@@ -12,4 +15,16 @@
 
 .hide {
   display: none;
+}
+
+/* text on terminal */
+
+.textOnTerminal {
+  color: white;
+  font-size: 14px;
+}
+
+/* Msg type color coded */
+.color-log {
+  color: blanchedalmond;
 }
