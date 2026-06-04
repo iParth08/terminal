@@ -3,10 +3,14 @@ import {
   clearScreen,
   printOnScreen,
   printPlayerInfo,
+  printQuestWindow,
   printStatusWindow,
+  printQuest,
 } from "./renderer.js";
 
-import { player, player_status } from "./module/data.js";
+import { player, player_status } from "./data/player.js";
+import { tasks } from "./data/quests.js";
+import { splitFirst } from "./utils.js";
 
 // Takes input : also the trigger of actions
 
@@ -30,10 +34,7 @@ const execute = (cmdLine) => {
 
 //parse input:
 const parseCmd = (cmdLine) => {
-  const token = cmdLine.split(":");
-  const command = token[0];
-  const outstream = token[1];
-
+  const [command, outstream] = splitFirst(cmdLine, " ");
   return { command, outstream };
 };
 
@@ -49,5 +50,53 @@ const handleCommands = (parsedToken) => {
     clearScreen();
     printPlayerInfo(player);
     printStatusWindow(player_status);
+  } else if (command == "quests") {
+    clearScreen();
+    printQuestWindow(tasks);
+  } else if (command == "add-quest") {
+    printOnScreen(command, "Adding new quest in progress");
+    addQuest(outstream);
+  } else if (command == "choose-task") {
+    printOnScreen(command, "Quest has been marked activated");
+    pickTask(outstream);
+    printQuest(tasks, outstream);
+  } else if (command == "mark-done") {
+    printOnScreen(command, "Quest has been marked done");
+    markDone(outstream);
+    printQuest(tasks, outstream);
   }
+};
+
+//add-quest helper
+const addQuest = (questData) => {
+  const tokens = questData.split(";");
+  const quest = {};
+  tokens.forEach((token) => {
+    const entry = token.split(":");
+    const key = entry[0].trim(),
+      value = entry[1].trim();
+
+    quest[key] = value;
+  });
+
+  tasks[tasks.length] = quest;
+};
+
+const pickTask = (index) => {
+  const picked = tasks[index];
+  picked.status = "Active";
+};
+
+const markDone = (index) => {
+  const picked = tasks[index];
+  if (picked.status == "Active") {
+    picked.isDone = true;
+
+    addExperience(picked.expReward);
+  }
+};
+
+const addExperience = (exp) => {
+  player.xp = parseInt(player.xp) + parseInt(exp);
+  printOnScreen("LOG", `${exp} experience point has been added.`);
 };

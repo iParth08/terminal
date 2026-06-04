@@ -50,3 +50,48 @@ export const printStatusWindow = (statusWinObj) => {
   resultSet.innerHTML +=
     "<p>----------------------------------------------------------------------------------------------</p>";
 };
+
+export const printQuestWindow = (questsArrObj) => {
+  console.log("Into printQuestWindow");
+  console.log(questsArrObj);
+  resultSet.innerHTML +=
+    "<p>===================== Quest Window ======================</p>";
+  questsArrObj.forEach((questObj, index) => {
+    console.log("index: ", index);
+    resultSet.innerHTML += `<p> ~~~~~~~~~~~~~~~~~~~~ >>> Quest - ${index} <<<~~~~~~~~~~~~~~~~~~~~ </p>`;
+    for (const [key, value] of Object.entries(questObj)) {
+      console.log(`${key}: ${value}`);
+
+      const newLine = document.createElement("p");
+      newLine.classList.add("textOnTerminal");
+      newLine.innerHTML = `${key} : ${value}`;
+      resultSet.appendChild(newLine);
+    }
+  });
+
+  resultSet.innerHTML +=
+    "<p>----------------------------------------------------------------------------------------------</p>";
+};
+
+export const printQuest = (questsArrObj, index) => {
+  console.log("Into printQuest");
+  const quest = questsArrObj[index];
+  if (quest == null || quest == undefined) {
+    printOnScreen("ERROR", "No quest found for that index");
+    return;
+  }
+
+  resultSet.innerHTML += `<p> ~~~~~~~~~~~~~~~~~~~~ >>> Quest - ${index} <<<~~~~~~~~~~~~~~~~~~~~ </p>`;
+
+  for (const [key, value] of Object.entries(quest)) {
+    console.log(`${key}: ${value}`);
+
+    const newLine = document.createElement("p");
+    newLine.classList.add("textOnTerminal");
+    newLine.innerHTML = `${key} : ${value}`;
+    resultSet.appendChild(newLine);
+  }
+
+  resultSet.innerHTML +=
+    "<p>----------------------------------------------------------------------------------------------</p>";
+};
